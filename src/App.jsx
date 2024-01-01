@@ -38,9 +38,9 @@ const addToCurrentValue=(e)=>{
 
   const selectOperator=(e)=>{
     const {innerText:operator } = e.target
-    if(currentValue==='0')setSelectedOperator(operator)
     if(operator==='=') calculate()
     else{
+    if(currentValue==='0')setSelectedOperator(operator)
   setSelectedOperator(operator)
   setCurrentValue('0')
   if(total){
@@ -51,9 +51,10 @@ const addToCurrentValue=(e)=>{
   }
 
   const calculate= ()=>{
-    setTotal(eval( currentValue + selectedOperator+ previousValue))
     setPreviousValue('0')
     setCurrentValue('0')
+    if(isNaN(eval( currentValue + selectedOperator+ previousValue))) setTotal('0')
+    else setTotal(eval( currentValue + selectedOperator+ previousValue))
   }
 
 
@@ -64,13 +65,13 @@ const addToCurrentValue=(e)=>{
   return (
     <>
      <h1>Worlds Best Calculator</h1>
-     <div style={{borderRadius:'.5rem',height:'initial', border:'rgba(0,0,0,0.5) solid 1px', backgroundColor:'rgba(0,0,0,0.10)'}}>{total}<br/> {currentValue}<br/>{selectedOperator} <br/>{previousValue} </div>
+     <div style={{wordWrap:'break-word', borderRadius:'.5rem',height:'initial', border:'rgba(0,0,0,0.5) solid 1px', backgroundColor:'rgba(0,0,0,0.10)'}}>{total}<br/> {currentValue}<br/>{selectedOperator} <br/>{previousValue} </div>
      {operationsRef.current.map((el,i)=>{
           return (
             <button onClick={selectOperator} key={i}>{el}</button>
           )
       })}
-     <div style={{width:'100%',display:'grid',gridTemplateColumns:`repeat(${ Math.floor(Math.random() * (8 - 2) + 2)}, 1fr)`}}>
+     <div style={{width:'100%',display:'grid',gridTemplateColumns:`repeat(${ Math.floor(Math.random() * (7 - 2) + 2)}, 1fr)`}}>
       { 
         numbersRef.current.map((el,i)=>{
           return (
