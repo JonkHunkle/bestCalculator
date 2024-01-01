@@ -70,7 +70,7 @@ const addToCurrentValue=(e)=>{
             <button onClick={selectOperator} key={i}>{el}</button>
           )
       })}
-     <div style={{width:'100%',display:'grid',gridTemplateColumns:`repeat(${ Math.floor(Math.random() * (10 - 2) + 2)}, 1fr)`}}>
+     <div style={{width:'100%',display:'grid',gridTemplateColumns:`repeat(${ Math.floor(Math.random() * (8 - 2) + 2)}, 1fr)`}}>
       { 
         numbersRef.current.map((el,i)=>{
           return (
