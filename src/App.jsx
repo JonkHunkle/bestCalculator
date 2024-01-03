@@ -44,17 +44,25 @@ const addToCurrentValue=(e)=>{
   setSelectedOperator(operator)
   setCurrentValue('0')
   if(total){
-    setPreviousValue(total)
-    setTotal('')
-  } else setPreviousValue(currentValue)
+    if (!isFinite(total) ){
+      setPreviousValue('0')
+    }else{
+      setPreviousValue(total)
+    }
+  } else {
+    if(isNaN(total)){ 
+      setPreviousValue('0')
+    }else setPreviousValue(currentValue)
+  }
+  setTotal('')
 } 
   }
 
   const calculate= ()=>{
     setPreviousValue('0')
     setCurrentValue('0')
-    if(isNaN(eval( currentValue + selectedOperator+ previousValue))) setTotal('0')
-    else setTotal(eval( currentValue + selectedOperator+ previousValue))
+    setSelectedOperator('')
+    setTotal(eval( currentValue + selectedOperator+ previousValue))
   }
 
 
